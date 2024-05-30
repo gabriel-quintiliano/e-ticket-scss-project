@@ -1,5 +1,4 @@
 .ticket {
-  background-color: #F5FEFE;
   width: 75%;
   max-width: 800px;
   aspect-ratio: 118 / 56;
@@ -8,6 +7,7 @@
   grid-template-columns: 76fr 4fr 38fr;
 
   &__main {
+    background-color: #F5FEFE;
     padding: 6rem 4rem 4rem;
     display: grid;
     grid-template-rows: min-content auto;
@@ -20,10 +20,10 @@
     width: 75%;
     margin: 0 auto;
     display: grid;
+    place-items: center;
     grid-template-columns: 19fr 13fr 19fr;
     grid-template-rows: repeat(2, auto);
 
-    place-items: center;
     color: #6D7572;
     line-height: 0.85;
   }
@@ -140,5 +140,36 @@
   &__legal {
     font-size: 1.2rem;
     color: #BDC0BF;
+  }
+
+  // = = = = = = = = = = = = = DASHED-LINE = = = = = = = = = = = = =
+  &__dashed-line {
+    display: grid;
+    place-items: center;
+    
+    &::after {
+      grid-row: 1;
+      grid-column: 1;
+      
+      content: "";
+      height: 85%;
+      border-right-width: 2px;
+      border-right-style: dashed;
+      border-right-color: #A6B1B0;
+    }
+    
+    &--svg {
+      grid-row: 1;
+      grid-column: 1;
+
+      height: 100%;
+      width: 100%;
+      fill: #F5FEFE;
+    }
+  }
+
+  // = = = = = = = = = = = = = SECONDARY = = = = = = = = = = = = =
+  &__secondary {
+    background-color: #F5FEFE;
   }
 }

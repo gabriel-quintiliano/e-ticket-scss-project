@@ -52,7 +52,6 @@ Single-colored icons can be modified like so:
 }
 ========================================== */
 .ticket {
-  background-color: #F5FEFE;
   width: 75%;
   max-width: 800px;
   aspect-ratio: 118/56;
@@ -60,6 +59,7 @@ Single-colored icons can be modified like so:
   grid-template-columns: 76fr 4fr 38fr;
 }
 .ticket__main {
+  background-color: #F5FEFE;
   padding: 6rem 4rem 4rem;
   display: grid;
   grid-template-rows: min-content auto;
@@ -69,9 +69,9 @@ Single-colored icons can be modified like so:
   width: 75%;
   margin: 0 auto;
   display: grid;
+  place-items: center;
   grid-template-columns: 19fr 13fr 19fr;
   grid-template-rows: repeat(2, auto);
-  place-items: center;
   color: #6D7572;
   line-height: 0.85;
 }
@@ -152,6 +152,29 @@ Single-colored icons can be modified like so:
 .ticket__legal {
   font-size: 1.2rem;
   color: #BDC0BF;
+}
+.ticket__dashed-line {
+  display: grid;
+  place-items: center;
+}
+.ticket__dashed-line::after {
+  grid-row: 1;
+  grid-column: 1;
+  content: "";
+  height: 85%;
+  border-right-width: 2px;
+  border-right-style: dashed;
+  border-right-color: #A6B1B0;
+}
+.ticket__dashed-line--svg {
+  grid-row: 1;
+  grid-column: 1;
+  height: 100%;
+  width: 100%;
+  fill: #F5FEFE;
+}
+.ticket__secondary {
+  background-color: #F5FEFE;
 }
 
 /*# sourceMappingURL=style.css.map */
