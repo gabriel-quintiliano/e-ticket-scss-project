@@ -1,0 +1,44 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  min-height: 100vh;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("../../assets/img/sky-1300.jpg");
+  background-size: cover;
+}
+
+body {
+  font-family: "Lato", sans-serif; /* Use "Lato" font-family if available, otherwise use "sans-serif" */
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.7; /* now line-height will be 1.7x bigger than the pre-defined line-height*/
+}
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+/* ==========================================
+Single-colored icons can be modified like so:
+.icon-name {
+  font-size: 32px;
+  color: red;
+}
+========================================== */
+
+/*# sourceMappingURL=style.css.map */
