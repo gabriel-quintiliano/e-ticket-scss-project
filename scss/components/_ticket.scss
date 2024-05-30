@@ -1,0 +1,144 @@
+.ticket {
+  background-color: #F5FEFE;
+  width: 75%;
+  max-width: 800px;
+  aspect-ratio: 118 / 56;
+
+  display: grid;
+  grid-template-columns: 76fr 4fr 38fr;
+
+  &__main {
+    padding: 6rem 4rem 4rem;
+    display: grid;
+    grid-template-rows: min-content auto;
+    gap: 10%; // 30% of height for row-gap
+  }
+
+  // = = = = = = = = = = TICKET MAIN SECTION = = = = = = = = = =
+  // = = = = = = = = = = = = ORIGIN-DEST = = = = = = = = = = = =
+  &__origin-dest {
+    width: 75%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 19fr 13fr 19fr;
+    grid-template-rows: repeat(2, auto);
+
+    place-items: center;
+    color: #6D7572;
+    line-height: 0.85;
+  }
+  
+  // only &__origin--short and &__dest--short within &__main
+  &__main &__origin--short,
+  &__main &__dest--short {
+    font-size: 5.5rem;
+  }
+  
+  // &__origin--short and &__dest--short within &__main and &__secondary
+  &__origin--short,
+  &__dest--short {
+    font-family: "Roboto", monospace;
+    color: #00DADB;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  // &__origin--full and &__dest--full within &__main and &__secondary
+  &__origin--full,
+  &__dest--full {
+    text-transform: capitalize;
+  }
+
+  &__origin {
+    &--short {
+      grid-row: 1;
+      grid-column: 1;
+    }
+    
+    &--full {
+      grid-row: 2;
+      grid-column: 1;
+    }
+  }
+  
+  &__dest {
+    &--short {
+      grid-row: 1;
+      grid-column: 3;
+    }
+    
+    &--full {
+      grid-row: 2;
+      grid-column: 3;
+    }
+  }
+
+  &__airplane-icon-wrapper {
+    // overrides &__origin-dest `place-items: center` which causes ::before
+    // and ::after to have no width at all
+    justify-self: stretch;
+
+    grid-row: 1;
+    grid-column: 2;
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    place-items: center;
+
+    color: #AFB9B4;
+
+    &::before,
+    &::after {
+      content: "";
+      height: 1px;
+      width: 80%;
+      background-color: currentColor;
+      border-radius: 100px;
+    }
+  }
+
+  &__airplane-icon {
+    vertical-align: middle; // to get rid of that empty space bellow svg (as it's an inline element)
+
+    &--main {
+      transform: rotateZ(90deg);
+      width:3rem;
+      height: 3rem;
+    }
+  }
+
+  // = = = = = = = = = = = TICKET-DETAILS = = = = = = = = = = =
+  &__details {
+    display: grid;
+    align-content: space-between;
+  }
+
+  // = = = = = = = = = = = = FLIGHT-INFO = = = = = = = = = = = =
+  &__flight-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+
+    background-color: #E6FBFB;
+    font-family: "Roboto", monospace;
+    color: #657574;
+    line-height: 1.3;
+
+    &--title {
+      font-weight: 300;
+    }
+
+    &--text {
+      color: #04D8D7;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+  }
+
+  // = = = = = = = = = = = = = = LEGAL = = = = = = = = = = = = = =
+  &__legal {
+    font-size: 1.2rem;
+    color: #BDC0BF;
+  }
+}

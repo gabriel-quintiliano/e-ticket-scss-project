@@ -13,7 +13,7 @@ html {
 body {
   box-sizing: border-box;
   min-height: 100vh;
-  background-image: linear-gradient(to left, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("../../assets/img/sky-1300.jpg");
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url("../../assets/img/sky-1300.jpg");
   background-size: cover;
 }
 
@@ -22,6 +22,17 @@ body {
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 1.7; /* now line-height will be 1.7x bigger than the pre-defined line-height*/
+}
+
+.bold--900 {
+  font-weight: 900;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .icon {
@@ -40,5 +51,107 @@ Single-colored icons can be modified like so:
   color: red;
 }
 ========================================== */
+.ticket {
+  background-color: #F5FEFE;
+  width: 75%;
+  max-width: 800px;
+  aspect-ratio: 118/56;
+  display: grid;
+  grid-template-columns: 76fr 4fr 38fr;
+}
+.ticket__main {
+  padding: 6rem 4rem 4rem;
+  display: grid;
+  grid-template-rows: min-content auto;
+  gap: 10%;
+}
+.ticket__origin-dest {
+  width: 75%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 19fr 13fr 19fr;
+  grid-template-rows: repeat(2, auto);
+  place-items: center;
+  color: #6D7572;
+  line-height: 0.85;
+}
+.ticket__main .ticket__origin--short, .ticket__main .ticket__dest--short {
+  font-size: 5.5rem;
+}
+.ticket__origin--short, .ticket__dest--short {
+  font-family: "Roboto", monospace;
+  color: #00DADB;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.ticket__origin--full, .ticket__dest--full {
+  text-transform: capitalize;
+}
+.ticket__origin--short {
+  grid-row: 1;
+  grid-column: 1;
+}
+.ticket__origin--full {
+  grid-row: 2;
+  grid-column: 1;
+}
+.ticket__dest--short {
+  grid-row: 1;
+  grid-column: 3;
+}
+.ticket__dest--full {
+  grid-row: 2;
+  grid-column: 3;
+}
+.ticket__airplane-icon-wrapper {
+  justify-self: stretch;
+  grid-row: 1;
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  place-items: center;
+  color: #AFB9B4;
+}
+.ticket__airplane-icon-wrapper::before, .ticket__airplane-icon-wrapper::after {
+  content: "";
+  height: 1px;
+  width: 80%;
+  background-color: currentColor;
+  border-radius: 100px;
+}
+.ticket__airplane-icon {
+  vertical-align: middle;
+}
+.ticket__airplane-icon--main {
+  transform: rotateZ(90deg);
+  width: 3rem;
+  height: 3rem;
+}
+.ticket__details {
+  display: grid;
+  align-content: space-between;
+}
+.ticket__flight-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  background-color: #E6FBFB;
+  font-family: "Roboto", monospace;
+  color: #657574;
+  line-height: 1.3;
+}
+.ticket__flight-info--title {
+  font-weight: 300;
+}
+.ticket__flight-info--text {
+  color: #04D8D7;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.ticket__legal {
+  font-size: 1.2rem;
+  color: #BDC0BF;
+}
 
 /*# sourceMappingURL=style.css.map */
