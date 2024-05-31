@@ -1,20 +1,25 @@
 .ticket {
+  --_inwards-border-radius: 2.6rem;
+
   width: 75%;
   max-width: 800px;
   aspect-ratio: 118 / 56;
 
   display: grid;
-  grid-template-columns: 76fr 4fr 38fr;
-
+  grid-template-columns: 76fr auto 38fr;
+  
+  // = = = = = = = = = = TICKET MAIN SECTION = = = = = = = = = =
   &__main {
-    background-color: #F5FEFE;
-    padding: 6rem 4rem 4rem;
+    background-color: #F7FEFE;
+    padding: 6rem calc(4rem - (var(--_inwards-border-radius) / 2)) 4rem 4rem;
     display: grid;
     grid-template-rows: min-content auto;
-    gap: 10%; // 30% of height for row-gap
+    gap: 20%; // 20% of height for row-gap
+
+    border-radius: 5px;
+    box-shadow: 0 0 10px 5px rgba(#000, .14); // BOX SHADOW <--
   }
 
-  // = = = = = = = = = = TICKET MAIN SECTION = = = = = = = = = =
   // = = = = = = = = = = = = ORIGIN-DEST = = = = = = = = = = = =
   &__origin-dest {
     width: 75%;
@@ -31,7 +36,7 @@
   // only &__origin--short and &__dest--short within &__main
   &__main &__origin--short,
   &__main &__dest--short {
-    font-size: 5.5rem;
+    font-size: 6rem;
   }
   
   // &__origin--short and &__dest--short within &__main and &__secondary
@@ -46,6 +51,9 @@
   // &__origin--full and &__dest--full within &__main and &__secondary
   &__origin--full,
   &__dest--full {
+    font-family: "Roboto", monospace;
+    font-weight: 300;
+    font-size: 1.7rem;
     text-transform: capitalize;
   }
 
@@ -138,38 +146,77 @@
 
   // = = = = = = = = = = = = = = LEGAL = = = = = = = = = = = = = =
   &__legal {
-    font-size: 1.2rem;
+    line-height: 1;
+    font-size: 1.4rem;
     color: #BDC0BF;
   }
 
   // = = = = = = = = = = = = = DASHED-LINE = = = = = = = = = = = = =
-  &__dashed-line {
+  &__intersection {
     display: grid;
-    place-items: center;
-    
-    &::after {
-      grid-row: 1;
-      grid-column: 1;
-      
-      content: "";
-      height: 85%;
-      border-right-width: 2px;
-      border-right-style: dashed;
-      border-right-color: #A6B1B0;
-    }
-    
-    &--svg {
-      grid-row: 1;
-      grid-column: 1;
+    grid-template-rows: auto 1fr auto;
+    align-items: center;
+  }
 
-      height: 100%;
-      width: 100%;
-      fill: #F5FEFE;
+  &__intersection-inwards-border-radius {
+    display: flex;
+    z-index: 9; // so it's above the box-shadow of its siblings
+
+    &::before,
+    &::after {
+      content: "";
+      width: calc(var(--_inwards-border-radius) / 2);
+      aspect-ratio: 1;
+      background-color: transparent;
+    }
+
+    &--top {
+      &::before {
+        border-radius: 0 0 0 100%;
+        box-shadow: -1rem 1rem 0 1rem #F7FEFE;
+      }
+      
+      &::after {
+        border-radius: 0 0 100% 0;
+        box-shadow: 1rem 1rem 0 1rem #F7FEFE;
+      }
+    }
+
+    &--bottom {
+      &::before {
+        border-radius: 100% 0 0 0;
+        box-shadow: -1rem -1rem 0 1rem #F7FEFE;
+      }
+      
+      &::after {
+        border-radius: 0 100% 0 0;
+        box-shadow: 1rem -1rem 0 1rem #F7FEFE;
+      }
+    }
+  }
+
+  &__dashed-line {
+    background-color: #F7FEFE;
+    place-self: stretch;
+    z-index: 10; // so it's above the box-shadow of its siblings
+
+    display: grid;
+    align-items: center;
+    justify-content: center;
+
+    &::after {
+      content: "";
+      height: 95%;
+      border-left-width: 2px;
+      border-left-style: dashed;
+      border-left-color: #A4B0AE;
     }
   }
 
   // = = = = = = = = = = = = = SECONDARY = = = = = = = = = = = = =
   &__secondary {
-    background-color: #F5FEFE;
+    background-color: #F7FEFE;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 5px rgba(#000, .14); // BOX SHADOW <--
   }
 }

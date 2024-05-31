@@ -52,18 +52,21 @@ Single-colored icons can be modified like so:
 }
 ========================================== */
 .ticket {
+  --_inwards-border-radius: 2.6rem;
   width: 75%;
   max-width: 800px;
   aspect-ratio: 118/56;
   display: grid;
-  grid-template-columns: 76fr 4fr 38fr;
+  grid-template-columns: 76fr auto 38fr;
 }
 .ticket__main {
-  background-color: #F5FEFE;
-  padding: 6rem 4rem 4rem;
+  background-color: #F7FEFE;
+  padding: 6rem calc(4rem - var(--_inwards-border-radius) / 2) 4rem 4rem;
   display: grid;
   grid-template-rows: min-content auto;
-  gap: 10%;
+  gap: 20%;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.14);
 }
 .ticket__origin-dest {
   width: 75%;
@@ -76,7 +79,7 @@ Single-colored icons can be modified like so:
   line-height: 0.85;
 }
 .ticket__main .ticket__origin--short, .ticket__main .ticket__dest--short {
-  font-size: 5.5rem;
+  font-size: 6rem;
 }
 .ticket__origin--short, .ticket__dest--short {
   font-family: "Roboto", monospace;
@@ -85,6 +88,9 @@ Single-colored icons can be modified like so:
   text-transform: uppercase;
 }
 .ticket__origin--full, .ticket__dest--full {
+  font-family: "Roboto", monospace;
+  font-weight: 300;
+  font-size: 1.7rem;
   text-transform: capitalize;
 }
 .ticket__origin--short {
@@ -150,31 +156,60 @@ Single-colored icons can be modified like so:
   font-weight: 700;
 }
 .ticket__legal {
-  font-size: 1.2rem;
+  line-height: 1;
+  font-size: 1.4rem;
   color: #BDC0BF;
 }
-.ticket__dashed-line {
+.ticket__intersection {
   display: grid;
-  place-items: center;
+  grid-template-rows: auto 1fr auto;
+  align-items: center;
+}
+.ticket__intersection-inwards-border-radius {
+  display: flex;
+  z-index: 9;
+}
+.ticket__intersection-inwards-border-radius::before, .ticket__intersection-inwards-border-radius::after {
+  content: "";
+  width: calc(var(--_inwards-border-radius) / 2);
+  aspect-ratio: 1;
+  background-color: transparent;
+}
+.ticket__intersection-inwards-border-radius--top::before {
+  border-radius: 0 0 0 100%;
+  box-shadow: -1rem 1rem 0 1rem #F7FEFE;
+}
+.ticket__intersection-inwards-border-radius--top::after {
+  border-radius: 0 0 100% 0;
+  box-shadow: 1rem 1rem 0 1rem #F7FEFE;
+}
+.ticket__intersection-inwards-border-radius--bottom::before {
+  border-radius: 100% 0 0 0;
+  box-shadow: -1rem -1rem 0 1rem #F7FEFE;
+}
+.ticket__intersection-inwards-border-radius--bottom::after {
+  border-radius: 0 100% 0 0;
+  box-shadow: 1rem -1rem 0 1rem #F7FEFE;
+}
+.ticket__dashed-line {
+  background-color: #F7FEFE;
+  place-self: stretch;
+  z-index: 10;
+  display: grid;
+  align-items: center;
+  justify-content: center;
 }
 .ticket__dashed-line::after {
-  grid-row: 1;
-  grid-column: 1;
   content: "";
-  height: 85%;
-  border-right-width: 2px;
-  border-right-style: dashed;
-  border-right-color: #A6B1B0;
-}
-.ticket__dashed-line--svg {
-  grid-row: 1;
-  grid-column: 1;
-  height: 100%;
-  width: 100%;
-  fill: #F5FEFE;
+  height: 95%;
+  border-left-width: 2px;
+  border-left-style: dashed;
+  border-left-color: #A4B0AE;
 }
 .ticket__secondary {
-  background-color: #F5FEFE;
+  background-color: #F7FEFE;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.14);
 }
 
 /*# sourceMappingURL=style.css.map */
