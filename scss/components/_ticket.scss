@@ -1,10 +1,18 @@
 .ticket {
-  --_inwards-border-radius: 2.6rem;
-  --_origin-dest-short-fs--main: 6rem;
+  // by changing this variable, you change most of the layout fs
+  --_adjustment--universal: 1;
+  --_adjustment--main: 1;
+  --_adjustment--secondary: 1;
+
   --_origin-dest-full-to-short-ratio: 19 / 60;
+  --_flight-info-title-to-text-ratio: 20 / 16;
+
+  --_inwards-border-radius: 2.6rem;
+  --_origin-dest-short-fs--main: calc(6rem * var(--_adjustment--main));
   --_origin-dest-full-fs--main: calc(var(--_origin-dest-short-fs--main) * var(--_origin-dest-full-to-short-ratio));
-  --_flight-info-title-fs--main: 1.6rem;
-  --_flight-info-text-fs--main: 2rem;
+  --_flight-info-title-fs--main: calc(1.6rem * var(--_adjustment--main));
+  --_flight-info-text-fs--main: calc(var(--_flight-info-title-fs--main) * var(--_flight-info-title-to-text-ratio) * var(--_adjustment--main));
+  --_airplane-icon-dimensions--main: 3rem;
 
   // main to secondary ratios:
   --_origin-dest-main-to-secondary-ratio: 19 / 30;
@@ -16,6 +24,13 @@
   --_origin-dest-full-fs--secondary: calc(var(--_origin-dest-full-fs--main) * var(--_origin-dest-main-to-secondary-ratio));
   --_flight-info-title-fs--secondary: calc(var(--_flight-info-title-fs--main) * var(--_flight-info-main-to-secondary-ratio));
   --_flight-info-text-fs--secondary: calc(var(--_flight-info-text-fs--main) * var(--_flight-info-main-to-secondary-ratio));
+  --_airplane-icon-dimensions--secondary: calc(var(--_airplane-icon-dimensions--main) * var(--_origin-dest-main-to-secondary-ratio));
+
+  --_origin-dest-short-fs--secondary: calc(3.8rem * var(--_adjustment--secondary));
+  --_origin-dest-full-fs--secondary: calc(var(--_origin-dest-short-fs--secondary) * var(--_origin-dest-full-to-short-ratio) * var(--_adjustment--secondary));
+  --_flight-info-title-fs--secondary: calc(1.38rem * var(--_adjustment--secondary));
+  --_flight-info-text-fs--secondary: calc(var(--_flight-info-title-fs--secondary) * var(--_flight-info-title-to-text-ratio) * var(--_adjustment--secondary));
+  --_airplane-icon-dimensions--secondary: 2rem;
 
   width: 75%;
   max-width: 800px;
@@ -24,13 +39,18 @@
   display: grid;
   grid-template-columns: 79fr auto 36fr;
 
+  @media screen and (max-width: 59.375em) {
+    --_adjustment--main: .9;
+  }
+
   // = = = = = = = = = = TICKET MAIN SECTION = = = = = = = = = =
   &__main {
     background-color: #F7FEFE;
     padding: 6rem calc(4rem - (var(--_inwards-border-radius) / 2)) 4rem 4rem;
     display: grid;
-    grid-template-rows: min-content auto;
-    gap: 15%; // 15% of height for row-gap
+    grid-template-rows: repeat(3, min-content);
+    align-content: space-between;
+    // gap: 15%; // 15% of height for row-gap
 
     border-radius: 5px;
     box-shadow: 0 0 10px 5px rgba(#000, .14); // BOX SHADOW <--
@@ -166,22 +186,22 @@
 
     &--main {
       transform: rotateZ(90deg);
-      width:3rem;
-      height: 3rem;
+      width: var(--_airplane-icon-dimensions--main);
+      height: var(--_airplane-icon-dimensions--main);
     }
 
     &--secondary {
       transform: rotateZ(180deg);
-      width: 2rem;
-      height: 2rem;
+      width: var(--_airplane-icon-dimensions--secondary);
+      height: var(--_airplane-icon-dimensions--secondary);
     }
   }
 
   // = = = = = = = = = = = TICKET-DETAILS = = = = = = = = = = =
-  &__details {
-    display: grid;
-    align-content: space-between;
-  }
+  // &__details {
+  //   display: grid;
+  //   align-content: space-between;
+  // }
 
   // = = = = = = = = = = = = FLIGHT-INFO = = = = = = = = = = = =
   &__flight-info {
@@ -229,6 +249,7 @@
     line-height: 1;
     font-size: 1.4rem;
     color: #BDC0BF;
+    margin-top: 5%;
   }
 
   // = = = = = = = = = = = = = DASHED-LINE = = = = = = = = = = = = =
