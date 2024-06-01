@@ -1,20 +1,36 @@
 .ticket {
   --_inwards-border-radius: 2.6rem;
+  --_origin-dest-short-fs--main: 6rem;
+  --_origin-dest-full-to-short-ratio: 19 / 60;
+  --_origin-dest-full-fs--main: calc(var(--_origin-dest-short-fs--main) * var(--_origin-dest-full-to-short-ratio));
+  --_flight-info-title-fs--main: 1.6rem;
+  --_flight-info-text-fs--main: 2rem;
+
+  // main to secondary ratios:
+  --_origin-dest-main-to-secondary-ratio: 19 / 30;
+  --_flight-info-main-to-secondary-ratio: 95 / 110;
+
+  // try not to change any of the variables bellow, these are rigged to always
+  // make sure elements from ...--secondary are related to ...--main elements
+  --_origin-dest-short-fs--secondary: calc(var(--_origin-dest-short-fs--main) * var(--_origin-dest-main-to-secondary-ratio));
+  --_origin-dest-full-fs--secondary: calc(var(--_origin-dest-full-fs--main) * var(--_origin-dest-main-to-secondary-ratio));
+  --_flight-info-title-fs--secondary: calc(var(--_flight-info-title-fs--main) * var(--_flight-info-main-to-secondary-ratio));
+  --_flight-info-text-fs--secondary: calc(var(--_flight-info-text-fs--main) * var(--_flight-info-main-to-secondary-ratio));
 
   width: 75%;
   max-width: 800px;
-  aspect-ratio: 118 / 56;
+  aspect-ratio: 123 / 56;
 
   display: grid;
-  grid-template-columns: 76fr auto 38fr;
-  
+  grid-template-columns: 79fr auto 36fr;
+
   // = = = = = = = = = = TICKET MAIN SECTION = = = = = = = = = =
   &__main {
     background-color: #F7FEFE;
     padding: 6rem calc(4rem - (var(--_inwards-border-radius) / 2)) 4rem 4rem;
     display: grid;
     grid-template-rows: min-content auto;
-    gap: 20%; // 20% of height for row-gap
+    gap: 15%; // 15% of height for row-gap
 
     border-radius: 5px;
     box-shadow: 0 0 10px 5px rgba(#000, .14); // BOX SHADOW <--
@@ -22,23 +38,51 @@
 
   // = = = = = = = = = = = = ORIGIN-DEST = = = = = = = = = = = =
   &__origin-dest {
-    width: 75%;
-    margin: 0 auto;
     display: grid;
     place-items: center;
-    grid-template-columns: 19fr 13fr 19fr;
+    justify-content: center;
     grid-template-rows: repeat(2, auto);
 
     color: #6D7572;
     line-height: 0.85;
+
+    &--main {
+      grid-template-columns: min-content 8rem min-content;
+      width: 75%;
+      margin: 0 auto;
+    }
+
+    &--secondary {
+      grid-template-columns: min-content 5rem min-content;
+      height: 75%;
+      margin: auto 0;
+    }
   }
-  
+
   // only &__origin--short and &__dest--short within &__main
   &__main &__origin--short,
   &__main &__dest--short {
-    font-size: 6rem;
+    font-size: var(--_origin-dest-short-fs--main);
   }
-  
+
+  // only &__origin--short and &__dest--short within &__main
+  &__secondary &__origin--short,
+  &__secondary &__dest--short {
+    font-size: var(--_origin-dest-short-fs--secondary);
+  }
+
+  // only &__origin--full and &__dest--full within &__main
+  &__main &__origin--full,
+  &__main &__dest--full {
+    font-size: var(--_origin-dest-full-fs--main);
+  }
+
+  // only &__origin--full and &__dest--full within &__main
+  &__secondary &__origin--full,
+  &__secondary &__dest--full {
+    font-size: var(--_origin-dest-full-fs--secondary);
+  }
+
   // &__origin--short and &__dest--short within &__main and &__secondary
   &__origin--short,
   &__dest--short {
@@ -53,7 +97,6 @@
   &__dest--full {
     font-family: "Roboto", monospace;
     font-weight: 300;
-    font-size: 1.7rem;
     text-transform: capitalize;
   }
 
@@ -62,19 +105,19 @@
       grid-row: 1;
       grid-column: 1;
     }
-    
+
     &--full {
       grid-row: 2;
       grid-column: 1;
     }
   }
-  
+
   &__dest {
     &--short {
       grid-row: 1;
       grid-column: 3;
     }
-    
+
     &--full {
       grid-row: 2;
       grid-column: 3;
@@ -95,13 +138,26 @@
 
     color: #AFB9B4;
 
-    &::before,
-    &::after {
-      content: "";
-      height: 1px;
-      width: 80%;
-      background-color: currentColor;
-      border-radius: 100px;
+    &--main {
+      &::before,
+      &::after {
+        content: "";
+        height: 1px;
+        width: 75%;
+        background-color: currentColor;
+        border-radius: 100px;
+      }
+    }
+
+    &--secondary {
+      &::before,
+      &::after {
+        content: "";
+        height: 75%;
+        width: 1px;
+        background-color: currentColor;
+        border-radius: 100px;
+      }
     }
   }
 
@@ -112,6 +168,12 @@
       transform: rotateZ(90deg);
       width:3rem;
       height: 3rem;
+    }
+
+    &--secondary {
+      transform: rotateZ(180deg);
+      width: 2rem;
+      height: 2rem;
     }
   }
 
@@ -125,22 +187,40 @@
   &__flight-info {
     display: flex;
     justify-content: space-between;
-    padding: 1rem 2rem;
-    border-radius: 5px;
 
-    background-color: #E6FBFB;
     font-family: "Roboto", monospace;
     color: #657574;
     line-height: 1.3;
 
-    &--title {
-      font-weight: 300;
+    &--main {
+      padding: 1rem 2rem;
+      border-radius: 5px;
+      background-color: #E6FBFB;
+    }
+  }
+
+  &__flight-info-title {
+    font-weight: 300;
+
+    &--main {
+      font-size: var(--_flight-info-title-fs--main);
     }
 
-    &--text {
-      color: #04D8D7;
-      font-size: 1.8rem;
-      font-weight: 700;
+    &--secondary {
+      font-size: var(--_flight-info-title-fs--secondary);
+    }
+  }
+
+  &__flight-info-text {
+    color: #04D8D7;
+    font-weight: 700;
+
+    &--main {
+      font-size: var(--_flight-info-text-fs--main);
+    }
+
+    &--secondary {
+      font-size: var(--_flight-info-text-fs--secondary);
     }
   }
 
@@ -175,7 +255,7 @@
         border-radius: 0 0 0 100%;
         box-shadow: -1rem 1rem 0 1rem #F7FEFE;
       }
-      
+
       &::after {
         border-radius: 0 0 100% 0;
         box-shadow: 1rem 1rem 0 1rem #F7FEFE;
@@ -187,7 +267,7 @@
         border-radius: 100% 0 0 0;
         box-shadow: -1rem -1rem 0 1rem #F7FEFE;
       }
-      
+
       &::after {
         border-radius: 0 100% 0 0;
         box-shadow: 1rem -1rem 0 1rem #F7FEFE;
@@ -214,9 +294,30 @@
   }
 
   // = = = = = = = = = = = = = SECONDARY = = = = = = = = = = = = =
-  &__secondary {
+  &__secondary-wrapper {
+    padding: 5rem 3rem 5rem calc(5rem - (var(--_inwards-border-radius) / 2));
     background-color: #F7FEFE;
     border-radius: 5px;
     box-shadow: 0 0 10px 5px rgba(#000, .14); // BOX SHADOW <--
+
+    // this makes &__secondary occupy the full height of this wrapper if we use `height: 100%;`,
+    // as this wrapper has its height defined by .ticket's aspect-ratio property, it becomes
+    // way too high and only stops when reaches about 100% of viewport height.
+    display: flex;
+  }
+
+  &__secondary {
+    flex: 1;
+    transform: rotateZ(180deg);
+
+    writing-mode: vertical-rl;
+    display: grid;
+    gap: 1rem;
+  }
+
+  &__barcode-img {
+    margin: auto 0;
+    width: 7.5rem;
+    aspect-ratio: 118 / 356;
   }
 }

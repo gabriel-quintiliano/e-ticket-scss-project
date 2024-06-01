@@ -23,10 +23,10 @@
     <div class="wrapper">
       <div class="ticket">
         <div class="ticket__main">
-          <div class="ticket__origin-dest">
+          <div class="ticket__origin-dest ticket__origin-dest--main">
             <p class="ticket__origin--short">BUD</p>
             <p class="ticket__origin--full">Budapest</p>
-            <div class="ticket__airplane-icon-wrapper">
+            <div class="ticket__airplane-icon-wrapper ticket__airplane-icon-wrapper--main">
               <svg class="icon ticket__airplane-icon ticket__airplane-icon--main">
                 <use href="assets/svg-icon/sprites.svg#icon-airplanemode_on" />
               </svg>
@@ -35,26 +35,26 @@
             <p class="ticket__dest--full">Helsinki</p>
           </div>
           <div class="ticket__details">
-            <div class="ticket__flight-info">
+            <div class="ticket__flight-info ticket__flight-info--main">
               <div class="ticket__departure">
-                <p class="ticket__flight-info--title">Departure</p>
-                <p class="ticket__flight-info--text">16:25</p>
+                <p class="ticket__flight-info-title ticket__flight-info-title--main">Departure</p>
+                <p class="ticket__flight-info-text ticket__flight-info-text--main">16:25</p>
               </div>
               <div class="ticket__arrival">
-                <p class="ticket__flight-info--title">Arrival</p>
-                <p class="ticket__flight-info--text">21:40</p>
+                <p class="ticket__flight-info-title ticket__flight-info-title--main">Arrival</p>
+                <p class="ticket__flight-info-text ticket__flight-info-text--main">21:40</p>
               </div>
               <div class="ticket__seat">
-                <p class="ticket__flight-info--title">Seat</p>
-                <p class="ticket__flight-info--text">54B</p>
+                <p class="ticket__flight-info-title ticket__flight-info-title--main">Seat</p>
+                <p class="ticket__flight-info-text ticket__flight-info-text--main">54B</p>
               </div>
               <div class="ticket__number">
-                <p class="ticket__flight-info--title">Ticket No.</p>
-                <p class="ticket__flight-info--text">FF346Y</p>
+                <p class="ticket__flight-info-title ticket__flight-info-title--main">Ticket No.</p>
+                <p class="ticket__flight-info-text ticket__flight-info-text--main">FF346Y</p>
               </div>
             </div>
             <div class="ticket__legal">
-              <p class="ticket__legal--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. <span class="bold--900">Odit inventore earum</span> modi nobis dolorem quam dolore veniam, accusantium cum tempora quis ipsa consequatur eius iure corrupti, modi <span class="bold--900">odit, fugiat, laudantium</span> facere magnam inventore iste harum!</p>
+              <p class="ticket__legal--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. <span class="bold--900">Odit inventore earum</span> modi nobis dolorem quam consequatur eius iure corrupti, modi <span class="bold--900">odit, fugiat, laudantium</span> facere magnam inventore iste harum!</p>
             </div>
           </div>
         </div>
@@ -63,11 +63,43 @@
           <div class="ticket__dashed-line"></div>
           <div class="ticket__intersection-inwards-border-radius ticket__intersection-inwards-border-radius--bottom"></div>
         </div>
-        <div class="ticket__secondary">
-
+        <div class="ticket__secondary-wrapper">
+          <div class="ticket__secondary">
+            <div class="ticket__origin-dest ticket__origin-dest--secondary">
+              <p class="ticket__origin--short">BUD</p>
+              <p class="ticket__origin--full">Budapest</p>
+              <div class="ticket__airplane-icon-wrapper ticket__airplane-icon-wrapper--secondary">
+                <svg class="icon ticket__airplane-icon ticket__airplane-icon--secondary">
+                  <use href="assets/svg-icon/sprites.svg#icon-airplanemode_on" />
+                </svg>
+              </div>
+              <p class="ticket__dest--short">HEL</p>
+              <p class="ticket__dest--full">Helsinki</p>
+            </div>
+            <div class="ticket__details">
+              <div class="ticket__flight-info ticket__flight-info--secondary">
+                <div class="ticket__departure">
+                  <p class="ticket__flight-info-title ticket__flight-info-title--secondary">Departure</p>
+                  <p class="ticket__flight-info-text ticket__flight-info-text--secondary">16:25</p>
+                </div>
+                <div class="ticket__arrival">
+                  <p class="ticket__flight-info-title ticket__flight-info-title--secondary">Arrival</p>
+                  <p class="ticket__flight-info-text ticket__flight-info-text--secondary">21:40</p>
+                </div>
+                <div class="ticket__seat">
+                  <p class="ticket__flight-info-title ticket__flight-info-title--secondary">Seat</p>
+                  <p class="ticket__flight-info-text ticket__flight-info-text--secondary">54B</p>
+                </div>
+                <div class="ticket__number">
+                  <p class="ticket__flight-info-title ticket__flight-info-title--secondary">Ticket No.</p>
+                  <p class="ticket__flight-info-text ticket__flight-info-text--secondary">FF346Y</p>
+                </div>
+              </div>
+            </div>
+            <img src="assets/img/barcode.png" alt="ticket's barcode" class="ticket__barcode-img"></img>
+          </div>
         </div>
       </div>
-    </div>
   </body>
 
 </html>

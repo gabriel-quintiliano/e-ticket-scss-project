@@ -53,33 +53,61 @@ Single-colored icons can be modified like so:
 ========================================== */
 .ticket {
   --_inwards-border-radius: 2.6rem;
+  --_origin-dest-short-fs--main: 6rem;
+  --_origin-dest-full-to-short-ratio: 19 / 60;
+  --_origin-dest-full-fs--main: calc(var(--_origin-dest-short-fs--main) * var(--_origin-dest-full-to-short-ratio));
+  --_flight-info-title-fs--main: 1.6rem;
+  --_flight-info-text-fs--main: 2rem;
+  --_origin-dest-main-to-secondary-ratio: 19 / 30;
+  --_flight-info-main-to-secondary-ratio: 95 / 110;
+  --_origin-dest-short-fs--secondary: calc(var(--_origin-dest-short-fs--main) * var(--_origin-dest-main-to-secondary-ratio));
+  --_origin-dest-full-fs--secondary: calc(var(--_origin-dest-full-fs--main) * var(--_origin-dest-main-to-secondary-ratio));
+  --_flight-info-title-fs--secondary: calc(var(--_flight-info-title-fs--main) * var(--_flight-info-main-to-secondary-ratio));
+  --_flight-info-text-fs--secondary: calc(var(--_flight-info-text-fs--main) * var(--_flight-info-main-to-secondary-ratio));
   width: 75%;
   max-width: 800px;
-  aspect-ratio: 118/56;
+  aspect-ratio: 123/56;
   display: grid;
-  grid-template-columns: 76fr auto 38fr;
+  grid-template-columns: 79fr auto 36fr;
 }
 .ticket__main {
   background-color: #F7FEFE;
   padding: 6rem calc(4rem - var(--_inwards-border-radius) / 2) 4rem 4rem;
   display: grid;
   grid-template-rows: min-content auto;
-  gap: 20%;
+  gap: 15%;
   border-radius: 5px;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.14);
 }
 .ticket__origin-dest {
-  width: 75%;
-  margin: 0 auto;
   display: grid;
   place-items: center;
-  grid-template-columns: 19fr 13fr 19fr;
+  justify-content: center;
   grid-template-rows: repeat(2, auto);
   color: #6D7572;
   line-height: 0.85;
 }
+.ticket__origin-dest--main {
+  grid-template-columns: min-content 8rem min-content;
+  width: 75%;
+  margin: 0 auto;
+}
+.ticket__origin-dest--secondary {
+  grid-template-columns: min-content 5rem min-content;
+  height: 75%;
+  margin: auto 0;
+}
 .ticket__main .ticket__origin--short, .ticket__main .ticket__dest--short {
-  font-size: 6rem;
+  font-size: var(--_origin-dest-short-fs--main);
+}
+.ticket__secondary .ticket__origin--short, .ticket__secondary .ticket__dest--short {
+  font-size: var(--_origin-dest-short-fs--secondary);
+}
+.ticket__main .ticket__origin--full, .ticket__main .ticket__dest--full {
+  font-size: var(--_origin-dest-full-fs--main);
+}
+.ticket__secondary .ticket__origin--full, .ticket__secondary .ticket__dest--full {
+  font-size: var(--_origin-dest-full-fs--secondary);
 }
 .ticket__origin--short, .ticket__dest--short {
   font-family: "Roboto", monospace;
@@ -90,7 +118,6 @@ Single-colored icons can be modified like so:
 .ticket__origin--full, .ticket__dest--full {
   font-family: "Roboto", monospace;
   font-weight: 300;
-  font-size: 1.7rem;
   text-transform: capitalize;
 }
 .ticket__origin--short {
@@ -118,10 +145,17 @@ Single-colored icons can be modified like so:
   place-items: center;
   color: #AFB9B4;
 }
-.ticket__airplane-icon-wrapper::before, .ticket__airplane-icon-wrapper::after {
+.ticket__airplane-icon-wrapper--main::before, .ticket__airplane-icon-wrapper--main::after {
   content: "";
   height: 1px;
-  width: 80%;
+  width: 75%;
+  background-color: currentColor;
+  border-radius: 100px;
+}
+.ticket__airplane-icon-wrapper--secondary::before, .ticket__airplane-icon-wrapper--secondary::after {
+  content: "";
+  height: 75%;
+  width: 1px;
   background-color: currentColor;
   border-radius: 100px;
 }
@@ -133,6 +167,11 @@ Single-colored icons can be modified like so:
   width: 3rem;
   height: 3rem;
 }
+.ticket__airplane-icon--secondary {
+  transform: rotateZ(180deg);
+  width: 2rem;
+  height: 2rem;
+}
 .ticket__details {
   display: grid;
   align-content: space-between;
@@ -140,20 +179,33 @@ Single-colored icons can be modified like so:
 .ticket__flight-info {
   display: flex;
   justify-content: space-between;
-  padding: 1rem 2rem;
-  border-radius: 5px;
-  background-color: #E6FBFB;
   font-family: "Roboto", monospace;
   color: #657574;
   line-height: 1.3;
 }
-.ticket__flight-info--title {
+.ticket__flight-info--main {
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  background-color: #E6FBFB;
+}
+.ticket__flight-info-title {
   font-weight: 300;
 }
-.ticket__flight-info--text {
+.ticket__flight-info-title--main {
+  font-size: var(--_flight-info-title-fs--main);
+}
+.ticket__flight-info-title--secondary {
+  font-size: var(--_flight-info-title-fs--secondary);
+}
+.ticket__flight-info-text {
   color: #04D8D7;
-  font-size: 1.8rem;
   font-weight: 700;
+}
+.ticket__flight-info-text--main {
+  font-size: var(--_flight-info-text-fs--main);
+}
+.ticket__flight-info-text--secondary {
+  font-size: var(--_flight-info-text-fs--secondary);
 }
 .ticket__legal {
   line-height: 1;
@@ -206,10 +258,24 @@ Single-colored icons can be modified like so:
   border-left-style: dashed;
   border-left-color: #A4B0AE;
 }
-.ticket__secondary {
+.ticket__secondary-wrapper {
+  padding: 5rem 3rem 5rem calc(5rem - var(--_inwards-border-radius) / 2);
   background-color: #F7FEFE;
   border-radius: 5px;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.14);
+  display: flex;
+}
+.ticket__secondary {
+  flex: 1;
+  transform: rotateZ(180deg);
+  writing-mode: vertical-rl;
+  display: grid;
+  gap: 1rem;
+}
+.ticket__barcode-img {
+  margin: auto 0;
+  width: 7.5rem;
+  aspect-ratio: 118/356;
 }
 
 /*# sourceMappingURL=style.css.map */
