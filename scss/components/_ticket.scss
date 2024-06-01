@@ -1,17 +1,13 @@
 .ticket {
-  // by changing this variable, you change most of the layout fs
-  --_adjustment--universal: 1;
-  --_adjustment--main: 1;
-  --_adjustment--secondary: 1;
 
   --_origin-dest-full-to-short-ratio: 19 / 60;
   --_flight-info-title-to-text-ratio: 20 / 16;
 
   --_inwards-border-radius: 2.6rem;
-  --_origin-dest-short-fs--main: calc(6rem * var(--_adjustment--main));
+  --_origin-dest-short-fs--main: 6rem;
   --_origin-dest-full-fs--main: calc(var(--_origin-dest-short-fs--main) * var(--_origin-dest-full-to-short-ratio));
-  --_flight-info-title-fs--main: calc(1.6rem * var(--_adjustment--main));
-  --_flight-info-text-fs--main: calc(var(--_flight-info-title-fs--main) * var(--_flight-info-title-to-text-ratio) * var(--_adjustment--main));
+  --_flight-info-title-fs--main: 1.6rem;
+  --_flight-info-text-fs--main: calc(var(--_flight-info-title-fs--main) * var(--_flight-info-title-to-text-ratio));
   --_airplane-icon-dimensions--main: 3rem;
 
   // main to secondary ratios:
@@ -26,21 +22,39 @@
   --_flight-info-text-fs--secondary: calc(var(--_flight-info-text-fs--main) * var(--_flight-info-main-to-secondary-ratio));
   --_airplane-icon-dimensions--secondary: calc(var(--_airplane-icon-dimensions--main) * var(--_origin-dest-main-to-secondary-ratio));
 
-  --_origin-dest-short-fs--secondary: calc(3.8rem * var(--_adjustment--secondary));
-  --_origin-dest-full-fs--secondary: calc(var(--_origin-dest-short-fs--secondary) * var(--_origin-dest-full-to-short-ratio) * var(--_adjustment--secondary));
-  --_flight-info-title-fs--secondary: calc(1.38rem * var(--_adjustment--secondary));
-  --_flight-info-text-fs--secondary: calc(var(--_flight-info-title-fs--secondary) * var(--_flight-info-title-to-text-ratio) * var(--_adjustment--secondary));
+  --_origin-dest-short-fs--secondary: 3.8rem;
+  --_origin-dest-full-fs--secondary: calc(var(--_origin-dest-short-fs--secondary) * var(--_origin-dest-full-to-short-ratio));
+  --_flight-info-title-fs--secondary: 1.38rem;
+  --_flight-info-text-fs--secondary: calc(var(--_flight-info-title-fs--secondary) * var(--_flight-info-title-to-text-ratio));
   --_airplane-icon-dimensions--secondary: 2rem;
-
-  width: 75%;
+  
   max-width: 800px;
   aspect-ratio: 123 / 56;
 
   display: grid;
   grid-template-columns: 79fr auto 36fr;
 
-  @media screen and (max-width: 59.375em) {
-    --_adjustment--main: .9;
+  @include respond-up-to(bp-lg) { // 816px
+    --_inwards-border-radius: 2.4rem;
+    --_origin-dest-short-fs--main: 5rem;
+    --_flight-info-title-fs--main: 1.4rem;
+  }
+  
+  @include respond-up-to(bp-md) {
+    grid-template-columns: minmax(25rem, 36rem);
+    grid-template-rows: 36rem auto min-content;
+  }
+  
+  @include respond-up-to(bp-sm) { // 500px
+    --_inwards-border-radius: 2rem;
+    --_flight-info-text-fs--main: 1.6rem;
+  }
+  
+  @include respond-up-to(bp-x-sm) { // 400px
+    --_origin-dest-short-fs--main: 4rem;
+    --_flight-info-title-fs--secondary: 1.2rem;
+    --_flight-info-text-fs--secondary: 1.4rem;
+    --_inwards-border-radius: 1.8rem;
   }
 
   // = = = = = = = = = = TICKET MAIN SECTION = = = = = = = = = =
@@ -50,10 +64,21 @@
     display: grid;
     grid-template-rows: repeat(3, min-content);
     align-content: space-between;
-    // gap: 15%; // 15% of height for row-gap
-
+    
     border-radius: 5px;
     box-shadow: 0 0 10px 5px rgba(#000, .14); // BOX SHADOW <--
+    
+    @include respond-up-to(bp-md) {
+      padding: 6rem 4rem calc(4rem - (var(--_inwards-border-radius) / 2));
+    }
+
+    @include respond-up-to(bp-sm) {
+      padding: 5rem 2rem calc(4rem - (var(--_inwards-border-radius) / 2));
+    }
+
+    @include respond-up-to(bp-x-sm) {
+      padding: 3rem 2rem calc(4rem - (var(--_inwards-border-radius) / 2));
+    }
   }
 
   // = = = = = = = = = = = = ORIGIN-DEST = = = = = = = = = = = =
@@ -158,14 +183,18 @@
 
     color: #AFB9B4;
 
+    &::before,
+    &::after {
+      content: "";
+      background-color: currentColor;
+      border-radius: 100px;
+    }
+
     &--main {
       &::before,
       &::after {
-        content: "";
         height: 1px;
         width: 75%;
-        background-color: currentColor;
-        border-radius: 100px;
       }
     }
 
@@ -175,8 +204,11 @@
         content: "";
         height: 75%;
         width: 1px;
-        background-color: currentColor;
-        border-radius: 100px;
+
+        @include respond-up-to(bp-md) {
+          height: 1px;
+          width: 75%;
+        }
       }
     }
   }
@@ -194,14 +226,12 @@
       transform: rotateZ(180deg);
       width: var(--_airplane-icon-dimensions--secondary);
       height: var(--_airplane-icon-dimensions--secondary);
+      
+      @include respond-up-to(bp-md) {
+        transform: rotateZ(90deg);
+      }
     }
   }
-
-  // = = = = = = = = = = = TICKET-DETAILS = = = = = = = = = = =
-  // &__details {
-  //   display: grid;
-  //   align-content: space-between;
-  // }
 
   // = = = = = = = = = = = = FLIGHT-INFO = = = = = = = = = = = =
   &__flight-info {
@@ -213,9 +243,45 @@
     line-height: 1.3;
 
     &--main {
+      margin-top: 1rem;
       padding: 1rem 2rem;
       border-radius: 5px;
       background-color: #E6FBFB;
+      
+      @include respond-up-to(bp-sm) {
+        display: grid;
+        gap: 1rem 0;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 1rem 0;
+      }
+
+      & > * { // every direct child of &__flight-info--main
+
+        @include respond-up-to(bp-sm) {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: .5rem;
+          align-items: center;
+        }
+        
+        @include respond-up-to(bp-x-sm) {
+          grid-template-columns: auto;
+          justify-items: center;
+        }
+        
+        & > *:nth-child(odd) {
+          // @include respond-up-to(bp-sm) {
+          //   justify-self: end;
+          // }
+          @include respond-interval(bp-x-sm) {
+            justify-self: end;
+          }
+        }
+      }
+    }
+
+    &--secondary {
+      max-height: 26.4rem;
     }
   }
 
@@ -250,6 +316,10 @@
     font-size: 1.4rem;
     color: #BDC0BF;
     margin-top: 5%;
+    
+    @include respond-up-to(bp-sm) { // 500px
+      font-size: 1.2rem;
+    }
   }
 
   // = = = = = = = = = = = = = DASHED-LINE = = = = = = = = = = = = =
@@ -257,11 +327,20 @@
     display: grid;
     grid-template-rows: auto 1fr auto;
     align-items: center;
+    
+    @include respond-up-to(bp-md) {
+      grid-template-rows: auto;
+      grid-template-columns: auto 1fr auto;
+    }
   }
 
   &__intersection-inwards-border-radius {
     display: flex;
     z-index: 9; // so it's above the box-shadow of its siblings
+
+    @include respond-up-to(bp-md) {
+      flex-direction: column;
+    }
 
     &::before,
     &::after {
@@ -269,12 +348,22 @@
       width: calc(var(--_inwards-border-radius) / 2);
       aspect-ratio: 1;
       background-color: transparent;
+      
+      @include respond-up-to(bp-md) {
+        width: auto;
+        height: calc(var(--_inwards-border-radius) / 2);
+      }
     }
 
     &--top {
       &::before {
         border-radius: 0 0 0 100%;
         box-shadow: -1rem 1rem 0 1rem #F7FEFE;
+        
+        @include respond-up-to(bp-md) {
+          border-radius: 0 100% 0 0;
+          box-shadow: 1rem -1rem 0 1rem #F7FEFE;
+        }
       }
 
       &::after {
@@ -292,6 +381,11 @@
       &::after {
         border-radius: 0 100% 0 0;
         box-shadow: 1rem -1rem 0 1rem #F7FEFE;
+        
+        @include respond-up-to(bp-md) {
+          border-radius: 0 0 0 100%;
+          box-shadow: -1rem 1rem 0 1rem #F7FEFE;
+        }
       }
     }
   }
@@ -304,19 +398,31 @@
     display: grid;
     align-items: center;
     justify-content: center;
+    
+    @include respond-up-to(bp-md) {
+      align-items: center;
+      justify-content: stretch;
+    }
 
     &::after {
       content: "";
       height: 95%;
+      border-width: 0;
       border-left-width: 2px;
-      border-left-style: dashed;
-      border-left-color: #A4B0AE;
+      border-style: dashed;
+      border-color: #A4B0AE;
+      
+      @include respond-up-to(bp-md) {
+        height: 0;
+        border-width: 0;
+        border-top-width: 2px;
+      }
     }
   }
 
   // = = = = = = = = = = = = = SECONDARY = = = = = = = = = = = = =
   &__secondary-wrapper {
-    padding: 5rem 3rem 5rem calc(5rem - (var(--_inwards-border-radius) / 2));
+    padding: 0 3rem 0 calc(5rem - (var(--_inwards-border-radius) / 2));
     background-color: #F7FEFE;
     border-radius: 5px;
     box-shadow: 0 0 10px 5px rgba(#000, .14); // BOX SHADOW <--
@@ -325,20 +431,46 @@
     // as this wrapper has its height defined by .ticket's aspect-ratio property, it becomes
     // way too high and only stops when reaches about 100% of viewport height.
     display: flex;
+    align-items: center;
+
+    @include respond-up-to(bp-md) {
+      padding: calc(4rem - (var(--_inwards-border-radius) / 2)) 4rem 3rem;
+    }
+
+    @include respond-up-to(bp-x-sm) {
+      padding: calc(3rem - (var(--_inwards-border-radius) / 2)) 2rem 3rem;
+    }
   }
 
   &__secondary {
     flex: 1;
-    transform: rotateZ(180deg);
-
-    writing-mode: vertical-rl;
+    
     display: grid;
     gap: 1rem;
+    
+    max-height: 26.4rem;
+    
+    @include respond-starting-at(bp-md) {
+      transform: rotateZ(180deg);
+      writing-mode: vertical-rl;
+    }
+  }
+  
+  &__picture-elem {
+    display: flex;
+    justify-content: center;
   }
 
   &__barcode-img {
     margin: auto 0;
     width: 7.5rem;
     aspect-ratio: 118 / 356;
+    
+    @include respond-up-to(bp-md) {
+      margin: 0 auto;
+      height: 7.5rem;
+      width: auto;
+      aspect-ratio: 356 / 118;
+    }
   }
 }

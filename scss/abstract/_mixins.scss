@@ -1,0 +1,51 @@
+$bp-x-sm: 25em; // 400px
+$bp-sm: 31.25em; // 500px
+$bp-md: 45.625em; // 730px
+$bp-lg: 59.9375em; // 815px
+
+$one-px-in-em: 0.0625em;
+
+@mixin respond-up-to($bp) {
+  @if $bp == bp-x-sm {
+    @media only screen and (max-width: ($bp-x-sm - $one-px-in-em)) { @content }
+  }
+  @if $bp == bp-sm {
+    @media only screen and (max-width: ($bp-sm - $one-px-in-em)) { @content }
+  }
+  @if $bp == bp-md {
+    @media only screen and (max-width: ($bp-md - $one-px-in-em)) { @content }
+  }
+  @if $bp == bp-lg {
+    @media only screen and (max-width: ($bp-lg - $one-px-in-em)) { @content }
+  }
+}
+
+@mixin respond-starting-at($bp) {
+  @if $bp == bp-x-sm {
+    @media only screen and (min-width: $bp-x-sm) { @content }
+  }
+  @if $bp == bp-sm {
+    @media only screen and (min-width: $bp-sm) { @content }
+  }
+  @if $bp == bp-md {
+    @media only screen and (min-width: $bp-md) { @content }
+  }
+  @if $bp == bp-lg {
+    @media only screen and (min-width: $bp-lg) { @content }
+  }
+}
+
+@mixin respond-interval($bp) {
+  @if $bp == bp-x-sm {
+    @media only screen and (min-width: $bp-x-sm) and (max-width: ($bp-sm - $one-px-in-em)) { @content }
+  }
+  @if $bp == bp-sm {
+    @media only screen and (min-width: $bp-sm) and (max-width: ($bp-md - $one-px-in-em)) { @content }
+  }
+  @if $bp == bp-md {
+    @media only screen and (min-width: $bp-md) and (max-width: ($bp-lg - $one-px-in-em)) { @content }
+  }
+  @if $bp == bp-lg {
+    @media only screen and (min-width: $bp-lg) { @content }
+  }
+}

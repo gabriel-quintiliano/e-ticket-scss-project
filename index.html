@@ -27,14 +27,17 @@
             <p class="ticket__origin--short">BUD</p>
             <p class="ticket__origin--full">Budapest</p>
             <div class="ticket__airplane-icon-wrapper ticket__airplane-icon-wrapper--main">
-              <svg class="icon ticket__airplane-icon ticket__airplane-icon--main">
+              <!-- <svg class="icon ticket__airplane-icon ticket__airplane-icon--main">
                 <use href="assets/svg-icon/sprites.svg#icon-airplanemode_on" />
+              </svg> -->
+              <!-- just so it can be seen when not using a web server, though in production the above is preferred -->
+              <svg class="icon ticket__airplane-icon ticket__airplane-icon--main" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path d="M21 15.984l-8.016-2.484v5.484l2.016 1.5v1.5l-3.516-0.984-3.469 0.984v-1.5l1.969-1.5v-5.484l-7.969 2.484v-1.969l7.969-5.016v-5.484q0-0.609 0.445-1.055t1.055-0.445 1.055 0.445 0.445 1.055v5.484l8.016 5.016v1.969z"></path>
               </svg>
             </div>
             <p class="ticket__dest--short">HEL</p>
             <p class="ticket__dest--full">Helsinki</p>
           </div>
-          <!-- <div class="ticket__details"> -->
           <div class="ticket__flight-info ticket__flight-info--main">
             <div class="ticket__departure">
               <p class="ticket__flight-info-title ticket__flight-info-title--main">Departure</p>
@@ -56,7 +59,6 @@
           <div class="ticket__legal">
             <p class="ticket__legal--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. <span class="bold--900">Odit inventore earum</span> modi nobis dolorem quam consequatur eius iure corrupti, modi <span class="bold--900">odit, fugiat, laudantium</span> facere magnam inventore iste harum!</p>
           </div>
-          <!-- </div> -->
         </div>
         <div class="ticket__intersection">
           <div class="ticket__intersection-inwards-border-radius ticket__intersection-inwards-border-radius--top"></div>
@@ -69,8 +71,12 @@
               <p class="ticket__origin--short">BUD</p>
               <p class="ticket__origin--full">Budapest</p>
               <div class="ticket__airplane-icon-wrapper ticket__airplane-icon-wrapper--secondary">
-                <svg class="icon ticket__airplane-icon ticket__airplane-icon--secondary">
+                <!-- <svg class="icon ticket__airplane-icon ticket__airplane-icon--secondary">
                   <use href="assets/svg-icon/sprites.svg#icon-airplanemode_on" />
+                </svg> -->
+                <!-- just so it can be seen when not using a web server, though in production the above is preferred -->
+                <svg class="icon ticket__airplane-icon ticket__airplane-icon--secondary" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <path d="M21 15.984l-8.016-2.484v5.484l2.016 1.5v1.5l-3.516-0.984-3.469 0.984v-1.5l1.969-1.5v-5.484l-7.969 2.484v-1.969l7.969-5.016v-5.484q0-0.609 0.445-1.055t1.055-0.445 1.055 0.445 0.445 1.055v5.484l8.016 5.016v1.969z"></path>
                 </svg>
               </div>
               <p class="ticket__dest--short">HEL</p>
@@ -96,7 +102,10 @@
                 </div>
               </div>
             </div>
-            <img src="assets/img/barcode.png" alt="ticket's barcode" class="ticket__barcode-img"></img>
+            <picture class="ticket__picture-elem">
+              <source srcset="assets/img/barcode.png" media="only screen and (min-width: 45.625em)" />
+              <img class="ticket__barcode-img" src="assets/img/barcode-horizontal.png" alt="ticket's barcode" />
+            </picture>
           </div>
         </div>
       </div>

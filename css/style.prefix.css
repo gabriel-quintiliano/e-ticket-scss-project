@@ -1,0 +1,446 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  min-height: 100vh;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url("../assets/img/sky-1300.jpg");
+  background-size: cover;
+}
+
+body {
+  font-family: "Lato", sans-serif; /* Use "Lato" font-family if available, otherwise use "sans-serif" */
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.7; /* now line-height will be 1.7x bigger than the pre-defined line-height*/
+}
+
+.bold--900 {
+  font-weight: 900;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 0 4rem;
+}
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+/* ==========================================
+Single-colored icons can be modified like so:
+.icon-name {
+  font-size: 32px;
+  color: red;
+}
+========================================== */
+.ticket {
+  --_origin-dest-full-to-short-ratio: 19 / 60;
+  --_flight-info-title-to-text-ratio: 20 / 16;
+  --_inwards-border-radius: 2.6rem;
+  --_origin-dest-short-fs--main: 6rem;
+  --_origin-dest-full-fs--main: calc(var(--_origin-dest-short-fs--main) * var(--_origin-dest-full-to-short-ratio));
+  --_flight-info-title-fs--main: 1.6rem;
+  --_flight-info-text-fs--main: calc(var(--_flight-info-title-fs--main) * var(--_flight-info-title-to-text-ratio));
+  --_airplane-icon-dimensions--main: 3rem;
+  --_origin-dest-main-to-secondary-ratio: 19 / 30;
+  --_flight-info-main-to-secondary-ratio: 95 / 110;
+  --_origin-dest-short-fs--secondary: calc(var(--_origin-dest-short-fs--main) * var(--_origin-dest-main-to-secondary-ratio));
+  --_origin-dest-full-fs--secondary: calc(var(--_origin-dest-full-fs--main) * var(--_origin-dest-main-to-secondary-ratio));
+  --_flight-info-title-fs--secondary: calc(var(--_flight-info-title-fs--main) * var(--_flight-info-main-to-secondary-ratio));
+  --_flight-info-text-fs--secondary: calc(var(--_flight-info-text-fs--main) * var(--_flight-info-main-to-secondary-ratio));
+  --_airplane-icon-dimensions--secondary: calc(var(--_airplane-icon-dimensions--main) * var(--_origin-dest-main-to-secondary-ratio));
+  --_origin-dest-short-fs--secondary: 3.8rem;
+  --_origin-dest-full-fs--secondary: calc(var(--_origin-dest-short-fs--secondary) * var(--_origin-dest-full-to-short-ratio));
+  --_flight-info-title-fs--secondary: 1.38rem;
+  --_flight-info-text-fs--secondary: calc(var(--_flight-info-title-fs--secondary) * var(--_flight-info-title-to-text-ratio));
+  --_airplane-icon-dimensions--secondary: 2rem;
+  max-width: 800px;
+  aspect-ratio: 123/56;
+  display: grid;
+  grid-template-columns: 79fr auto 36fr;
+}
+@media only screen and (max-width: 59.875em) {
+  .ticket {
+    --_inwards-border-radius: 2.4rem;
+    --_origin-dest-short-fs--main: 5rem;
+    --_flight-info-title-fs--main: 1.4rem;
+  }
+}
+@media only screen and (max-width: 45.5625em) {
+  .ticket {
+    grid-template-columns: minmax(25rem, 36rem);
+    grid-template-rows: 36rem auto min-content;
+  }
+}
+@media only screen and (max-width: 31.1875em) {
+  .ticket {
+    --_inwards-border-radius: 2rem;
+    --_flight-info-text-fs--main: 1.6rem;
+  }
+}
+@media only screen and (max-width: 24.9375em) {
+  .ticket {
+    --_origin-dest-short-fs--main: 4rem;
+    --_flight-info-title-fs--secondary: 1.2rem;
+    --_flight-info-text-fs--secondary: 1.4rem;
+    --_inwards-border-radius: 1.8rem;
+  }
+}
+.ticket__main {
+  background-color: #F7FEFE;
+  padding: 6rem calc(4rem - var(--_inwards-border-radius) / 2) 4rem 4rem;
+  display: grid;
+  grid-template-rows: repeat(3, min-content);
+  align-content: space-between;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.14);
+}
+@media only screen and (max-width: 45.5625em) {
+  .ticket__main {
+    padding: 6rem 4rem calc(4rem - var(--_inwards-border-radius) / 2);
+  }
+}
+@media only screen and (max-width: 31.1875em) {
+  .ticket__main {
+    padding: 5rem 2rem calc(4rem - var(--_inwards-border-radius) / 2);
+  }
+}
+@media only screen and (max-width: 24.9375em) {
+  .ticket__main {
+    padding: 3rem 2rem calc(4rem - var(--_inwards-border-radius) / 2);
+  }
+}
+.ticket__origin-dest {
+  display: grid;
+  place-items: center;
+  justify-content: center;
+  grid-template-rows: repeat(2, auto);
+  color: #6D7572;
+  line-height: 0.85;
+}
+.ticket__origin-dest--main {
+  grid-template-columns: min-content 8rem min-content;
+  width: 75%;
+  margin: 0 auto;
+}
+.ticket__origin-dest--secondary {
+  grid-template-columns: min-content 5rem min-content;
+  height: 75%;
+  margin: auto 0;
+}
+.ticket__main .ticket__origin--short, .ticket__main .ticket__dest--short {
+  font-size: var(--_origin-dest-short-fs--main);
+}
+.ticket__secondary .ticket__origin--short, .ticket__secondary .ticket__dest--short {
+  font-size: var(--_origin-dest-short-fs--secondary);
+}
+.ticket__main .ticket__origin--full, .ticket__main .ticket__dest--full {
+  font-size: var(--_origin-dest-full-fs--main);
+}
+.ticket__secondary .ticket__origin--full, .ticket__secondary .ticket__dest--full {
+  font-size: var(--_origin-dest-full-fs--secondary);
+}
+.ticket__origin--short, .ticket__dest--short {
+  font-family: "Roboto", monospace;
+  color: #00DADB;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.ticket__origin--full, .ticket__dest--full {
+  font-family: "Roboto", monospace;
+  font-weight: 300;
+  text-transform: capitalize;
+}
+.ticket__origin--short {
+  grid-row: 1;
+  grid-column: 1;
+}
+.ticket__origin--full {
+  grid-row: 2;
+  grid-column: 1;
+}
+.ticket__dest--short {
+  grid-row: 1;
+  grid-column: 3;
+}
+.ticket__dest--full {
+  grid-row: 2;
+  grid-column: 3;
+}
+.ticket__airplane-icon-wrapper {
+  justify-self: stretch;
+  grid-row: 1;
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  place-items: center;
+  color: #AFB9B4;
+}
+.ticket__airplane-icon-wrapper::before, .ticket__airplane-icon-wrapper::after {
+  content: "";
+  background-color: currentColor;
+  border-radius: 100px;
+}
+.ticket__airplane-icon-wrapper--main::before, .ticket__airplane-icon-wrapper--main::after {
+  height: 1px;
+  width: 75%;
+}
+.ticket__airplane-icon-wrapper--secondary::before, .ticket__airplane-icon-wrapper--secondary::after {
+  content: "";
+  height: 75%;
+  width: 1px;
+}
+@media only screen and (max-width: 45.5625em) {
+  .ticket__airplane-icon-wrapper--secondary::before, .ticket__airplane-icon-wrapper--secondary::after {
+    height: 1px;
+    width: 75%;
+  }
+}
+.ticket__airplane-icon {
+  vertical-align: middle;
+}
+.ticket__airplane-icon--main {
+  transform: rotateZ(90deg);
+  width: var(--_airplane-icon-dimensions--main);
+  height: var(--_airplane-icon-dimensions--main);
+}
+.ticket__airplane-icon--secondary {
+  transform: rotateZ(180deg);
+  width: var(--_airplane-icon-dimensions--secondary);
+  height: var(--_airplane-icon-dimensions--secondary);
+}
+@media only screen and (max-width: 45.5625em) {
+  .ticket__airplane-icon--secondary {
+    transform: rotateZ(90deg);
+  }
+}
+.ticket__flight-info {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Roboto", monospace;
+  color: #657574;
+  line-height: 1.3;
+}
+.ticket__flight-info--main {
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  background-color: #E6FBFB;
+}
+@media only screen and (max-width: 31.1875em) {
+  .ticket__flight-info--main {
+    display: grid;
+    gap: 1rem 0;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1rem 0;
+  }
+}
+@media only screen and (max-width: 31.1875em) {
+  .ticket__flight-info--main > * {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    align-items: center;
+  }
+}
+@media only screen and (max-width: 24.9375em) {
+  .ticket__flight-info--main > * {
+    grid-template-columns: auto;
+    justify-items: center;
+  }
+}
+@media only screen and (min-width: 25em) and (max-width: 31.1875em) {
+  .ticket__flight-info--main > * > *:nth-child(odd) {
+    justify-self: end;
+  }
+}
+.ticket__flight-info--secondary {
+  max-height: 26.4rem;
+}
+.ticket__flight-info-title {
+  font-weight: 300;
+}
+.ticket__flight-info-title--main {
+  font-size: var(--_flight-info-title-fs--main);
+}
+.ticket__flight-info-title--secondary {
+  font-size: var(--_flight-info-title-fs--secondary);
+}
+.ticket__flight-info-text {
+  color: #04D8D7;
+  font-weight: 700;
+}
+.ticket__flight-info-text--main {
+  font-size: var(--_flight-info-text-fs--main);
+}
+.ticket__flight-info-text--secondary {
+  font-size: var(--_flight-info-text-fs--secondary);
+}
+.ticket__legal {
+  line-height: 1;
+  font-size: 1.4rem;
+  color: #BDC0BF;
+  margin-top: 5%;
+}
+@media only screen and (max-width: 31.1875em) {
+  .ticket__legal {
+    font-size: 1.2rem;
+  }
+}
+.ticket__intersection {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-items: center;
+}
+@media only screen and (max-width: 45.5625em) {
+  .ticket__intersection {
+    grid-template-rows: auto;
+    grid-template-columns: auto 1fr auto;
+  }
+}
+.ticket__intersection-inwards-border-radius {
+  display: flex;
+  z-index: 9;
+}
+@media only screen and (max-width: 45.5625em) {
+  .ticket__intersection-inwards-border-radius {
+    flex-direction: column;
+  }
+}
+.ticket__intersection-inwards-border-radius::before, .ticket__intersection-inwards-border-radius::after {
+  content: "";
+  width: calc(var(--_inwards-border-radius) / 2);
+  aspect-ratio: 1;
+  background-color: transparent;
+}
+@media only screen and (max-width: 45.5625em) {
+  .ticket__intersection-inwards-border-radius::before, .ticket__intersection-inwards-border-radius::after {
+    width: auto;
+    height: calc(var(--_inwards-border-radius) / 2);
+  }
+}
+.ticket__intersection-inwards-border-radius--top::before {
+  border-radius: 0 0 0 100%;
+  box-shadow: -1rem 1rem 0 1rem #F7FEFE;
+}
+@media only screen and (max-width: 45.5625em) {
+  .ticket__intersection-inwards-border-radius--top::before {
+    border-radius: 0 100% 0 0;
+    box-shadow: 1rem -1rem 0 1rem #F7FEFE;
+  }
+}
+.ticket__intersection-inwards-border-radius--top::after {
+  border-radius: 0 0 100% 0;
+  box-shadow: 1rem 1rem 0 1rem #F7FEFE;
+}
+.ticket__intersection-inwards-border-radius--bottom::before {
+  border-radius: 100% 0 0 0;
+  box-shadow: -1rem -1rem 0 1rem #F7FEFE;
+}
+.ticket__intersection-inwards-border-radius--bottom::after {
+  border-radius: 0 100% 0 0;
+  box-shadow: 1rem -1rem 0 1rem #F7FEFE;
+}
+@media only screen and (max-width: 45.5625em) {
+  .ticket__intersection-inwards-border-radius--bottom::after {
+    border-radius: 0 0 0 100%;
+    box-shadow: -1rem 1rem 0 1rem #F7FEFE;
+  }
+}
+.ticket__dashed-line {
+  background-color: #F7FEFE;
+  place-self: stretch;
+  z-index: 10;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+@media only screen and (max-width: 45.5625em) {
+  .ticket__dashed-line {
+    align-items: center;
+    justify-content: stretch;
+  }
+}
+.ticket__dashed-line::after {
+  content: "";
+  height: 95%;
+  border-width: 0;
+  border-left-width: 2px;
+  border-style: dashed;
+  border-color: #A4B0AE;
+}
+@media only screen and (max-width: 45.5625em) {
+  .ticket__dashed-line::after {
+    height: 0;
+    border-width: 0;
+    border-top-width: 2px;
+  }
+}
+.ticket__secondary-wrapper {
+  padding: 0 3rem 0 calc(5rem - var(--_inwards-border-radius) / 2);
+  background-color: #F7FEFE;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.14);
+  display: flex;
+  align-items: center;
+}
+@media only screen and (max-width: 45.5625em) {
+  .ticket__secondary-wrapper {
+    padding: calc(4rem - var(--_inwards-border-radius) / 2) 4rem 3rem;
+  }
+}
+@media only screen and (max-width: 24.9375em) {
+  .ticket__secondary-wrapper {
+    padding: calc(3rem - var(--_inwards-border-radius) / 2) 2rem 3rem;
+  }
+}
+.ticket__secondary {
+  flex: 1;
+  display: grid;
+  gap: 1rem;
+  max-height: 26.4rem;
+}
+@media only screen and (min-width: 45.625em) {
+  .ticket__secondary {
+    transform: rotateZ(180deg);
+    writing-mode: vertical-rl;
+  }
+}
+.ticket__picture-elem {
+  display: flex;
+  justify-content: center;
+}
+.ticket__barcode-img {
+  margin: auto 0;
+  width: 7.5rem;
+  aspect-ratio: 118/356;
+}
+@media only screen and (max-width: 45.5625em) {
+  .ticket__barcode-img {
+    margin: 0 auto;
+    height: 7.5rem;
+    width: auto;
+    aspect-ratio: 356/118;
+  }
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3Njc3MvYmFzZS9fYmFzZS5zY3NzIiwic3R5bGUuY3NzIiwiLi4vc2Nzcy9iYXNlL190eXBvZ3JhcGh5LnNjc3MiLCIuLi9zY3NzL2xheW91dC9fd3JhcHBlci5zY3NzIiwiLi4vc2Nzcy9jb21wb25lbnRzL19pY29uLnNjc3MiLCIuLi9zY3NzL2NvbXBvbmVudHMvX3RpY2tldC5zY3NzIiwiLi4vc2Nzcy9hYnN0cmFjdC9fbWl4aW5zLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7OztFQUdFLFNBQUE7RUFDQSxVQUFBO0VBQ0EsbUJBQUE7QUNDRjs7QURFQTtFQUNFLGdCQUFBO0FDQ0Y7O0FERUE7RUFDRSxzQkFBQTtFQUNBLGlCQUFBO0VBRUEsbUlBQUE7RUFDQSxzQkFBQTtBQ0FGOztBQ2pCQTtFQUNFLCtCQUFBLEVBQUEsb0VBQUE7RUFDQSxnQkFBQTtFQUNBLGlCQUFBO0VBQ0EsZ0JBQUEsRUFBQSx3RUFBQTtBRG9CRjs7QUNqQkE7RUFDRSxnQkFBQTtBRG9CRjs7QUU1QkE7RUFDRSxhQUFBO0VBQ0EsdUJBQUE7RUFDQSxtQkFBQTtFQUVBLGlCQUFBO0VBQ0EsZUFBQTtBRjhCRjs7QUdwQ0E7RUFDRSxxQkFBQTtFQUNBLFVBQUE7RUFDQSxXQUFBO0VBQ0EsZUFBQTtFQUNBLG9CQUFBO0VBQ0Esa0JBQUE7QUh1Q0Y7O0FHcENBOzs7Ozs7NENBQUE7QUNUQTtFQUVFLDJDQUFBO0VBQ0EsMkNBQUE7RUFFQSxnQ0FBQTtFQUNBLG1DQUFBO0VBQ0EsZ0hBQUE7RUFDQSxxQ0FBQTtFQUNBLGdIQUFBO0VBQ0EsdUNBQUE7RUFHQSwrQ0FBQTtFQUNBLGdEQUFBO0VBSUEsMEhBQUE7RUFDQSx3SEFBQTtFQUNBLDBIQUFBO0VBQ0Esd0hBQUE7RUFDQSxrSUFBQTtFQUVBLDBDQUFBO0VBQ0EsMEhBQUE7RUFDQSwyQ0FBQTtFQUNBLDBIQUFBO0VBQ0EsNENBQUE7RUFFQSxnQkFBQTtFQUNBLG9CQUFBO0VBRUEsYUFBQTtFQUNBLHFDQUFBO0FK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S2xTSTtFRDZTRjtJQU9JLGlCQUFBO0VKZEo7QUFDRjtBSWtCRTtFQUNFLGFBQUE7RUFDQSxpQ0FBQTtFQUNBLG1CQUFBO0FKaEJKO0FLelNJO0VEc1RGO0lBTUksd0JBQUE7SUFDQSxvQ0FBQTtFSmZKO0FBQ0Y7QUlrQkU7RUFDRSxhQUFBO0VBQ0EsVUFBQTtBSmhCSjtBS25USTtFRGlVRjtJQUtJLHNCQUFBO0VKZko7QUFDRjtBSWlCSTtFQUVFLFdBQUE7RUFDQSw4Q0FBQTtFQUNBLGVBQUE7RUFDQSw2QkFBQTtBSmhCTjtBSzlUSTtFRHlVQTtJQVFJLFdBQUE7SUFDQSwrQ0FBQTtFSmZOO0FBQ0Y7QUltQk07RUFDRSx5QkFBQTtFQUNBLHFDQUFBO0FKakJSO0FLeFVJO0VEdVZFO0lBS0kseUJBQUE7SUFDQSxxQ0FBQTtFSmhCUjtBQUNGO0FJbUJNO0VBQ0UseUJBQUE7RUFDQSxvQ0FBQTtBSmpCUjtBSXNCTTtFQUNFLHlCQUFBO0VBQ0Esc0NBQUE7QUpwQlI7QUl1Qk07RUFDRSx5QkFBQTtFQUNBLHFDQUFBO0FKckJSO0FLMVZJO0VENldFO0lBS0kseUJBQUE7SUFDQSxxQ0FBQTtFSnBCUjtBQUNGO0FJeUJFO0VBQ0UseUJBQUE7RUFDQSxtQkFBQTtFQUNBLFdBQUE7RUFFQSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSx1QkFBQTtBSnhCSjtBS3hXSTtFRHlYRjtJQVVJLG1CQUFBO0lBQ0Esd0JBQUE7RUp2Qko7QUFDRjtBSXlCSTtFQUNFLFdBQUE7RUFDQSxXQUFBO0VBQ0EsZUFBQTtFQUNBLHNCQUFBO0VBQ0Esb0JBQUE7RUFDQSxxQkFBQTtBSnZCTjtBS3RYSTtFRHVZQTtJQVNJLFNBQUE7SUFDQSxlQUFBO0lBQ0EscUJBQUE7RUp0Qk47QUFDRjtBSTJCRTtFQUNFLGdFQUFBO0VBQ0EseUJBQUE7RUFDQSxrQkFBQTtFQUNBLDRDQUFBO0VBS0EsYUFBQTtFQUNBLG1CQUFBO0FKN0JKO0FLcllJO0VEd1pGO0lBYUksaUVBQUE7RUo1Qko7QUFDRjtBS2haSTtFRDhaRjtJQWlCSSxpRUFBQTtFSjNCSjtBQUNGO0FJOEJFO0VBQ0UsT0FBQTtFQUVBLGFBQUE7RUFDQSxTQUFBO0VBRUEsbUJBQUE7QUo5Qko7QUt0WUk7RUQ4WkY7SUFTSSwwQkFBQTtJQUNBLHlCQUFBO0VKN0JKO0FBQ0Y7QUlnQ0U7RUFDRSxhQUFBO0VBQ0EsdUJBQUE7QUo5Qko7QUlpQ0U7RUFDRSxjQUFBO0VBQ0EsYUFBQTtFQUNBLHFCQUFBO0FKL0JKO0FLcGFJO0VEZ2NGO0lBTUksY0FBQTtJQUNBLGNBQUE7SUFDQSxXQUFBO0lBQ0EscUJBQUE7RUo5Qko7QUFDRiIsImZpbGUiOiJzdHlsZS5wcmVmaXguY3NzIn0= */
